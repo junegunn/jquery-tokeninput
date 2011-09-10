@@ -183,14 +183,21 @@ $.TokenList = function (input, url_or_data_or_function, settings) {
                     } else {
                         var dropdown_item = null;
 
-                        if(event.keyCode === KEY.DOWN || event.keyCode === KEY.RIGHT) {
-                            dropdown_item = $(selected_dropdown_item).next();
+                        if (selected_dropdown_item == null) {
+                            if(event.keyCode === KEY.DOWN || event.keyCode === KEY.RIGHT)
+                                select_dropdown_item( $(dropdown.find('li').get(0)) );
+                            else
+                                select_dropdown_item( $(dropdown.find('li').get(-1)) );
                         } else {
-                            dropdown_item = $(selected_dropdown_item).prev();
-                        }
+                            if(event.keyCode === KEY.DOWN || event.keyCode === KEY.RIGHT) {
+                                dropdown_item = $(selected_dropdown_item).next();
+                            } else {
+                                dropdown_item = $(selected_dropdown_item).prev();
+                            }
 
-                        if(dropdown_item.length) {
-                            select_dropdown_item(dropdown_item);
+                            if(dropdown_item.length) {
+                                select_dropdown_item(dropdown_item);
+                            }
                         }
                         return false;
                     }

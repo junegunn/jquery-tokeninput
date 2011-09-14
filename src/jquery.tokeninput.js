@@ -231,7 +231,7 @@ $.TokenList = function (input, url_or_data_or_function, settings) {
 
                     return false;
                   } else if (settings.allowNewItems) {
-                    var new_item_name = $(this).val();
+                    var new_item_name = $.trim($(this).val());
 
                     if (new_item_name.length > 0) {
                       if (typeof(settings.newItemFilter) === "function") {
